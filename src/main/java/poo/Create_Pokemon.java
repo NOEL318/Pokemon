@@ -25,21 +25,178 @@ public class Create_Pokemon extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        pokemon_name = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        pokemon_weight = new javax.swing.JTextField();
+        pokemon_estatura = new javax.swing.JTextField();
+        pokemon_element = new javax.swing.JTextField();
+        pokemon_genre = new javax.swing.JTextField();
+        pokemon_speed = new javax.swing.JTextField();
+        pokemon_level = new javax.swing.JTextField();
+        pokemon_defense = new javax.swing.JTextField();
+        pokemon_attack = new javax.swing.JTextField();
+        pokemon_life = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        pokemon_description = new javax.swing.JTextPane();
+
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        pokemon_name.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        pokemon_name.setText("POKEMON_NAME");
+
+        jLabel2.setText("Peso");
+
+        jLabel3.setText("Estatura");
+
+        jLabel4.setText("Elemento");
+
+        jLabel5.setText("Descripción");
+
+        jLabel6.setText("Género");
+
+        jLabel7.setText("Habilidades");
+
+        jLabel8.setText("Nivel");
+
+        pokemon_weight.setText("Peso");
+
+        pokemon_estatura.setText("Estatura");
+
+        pokemon_element.setText("Elemento");
+
+        pokemon_genre.setText("Género");
+
+        pokemon_speed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pokemon_speedActionPerformed(evt);
+            }
+        });
+
+        pokemon_level.setEditable(false);
+        pokemon_level.setText("0");
+
+        pokemon_defense.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pokemon_defenseActionPerformed(evt);
+            }
+        });
+
+        pokemon_attack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pokemon_attackActionPerformed(evt);
+            }
+        });
+
+        pokemon_life.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pokemon_lifeActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.setViewportView(pokemon_description);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pokemon_life, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .addComponent(pokemon_attack, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .addComponent(pokemon_defense, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .addComponent(pokemon_weight)
+                    .addComponent(pokemon_estatura, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .addComponent(pokemon_element, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .addComponent(pokemon_genre, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .addComponent(pokemon_speed, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .addComponent(pokemon_level, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(82, Short.MAX_VALUE)
+                .addComponent(pokemon_name)
+                .addGap(93, 93, 93))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(161, 161, 161)
+                .addComponent(pokemon_name)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(pokemon_weight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(pokemon_estatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(pokemon_element, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(pokemon_genre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(pokemon_speed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addComponent(pokemon_defense, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(pokemon_attack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(pokemon_life, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(pokemon_level, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void pokemon_speedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokemon_speedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pokemon_speedActionPerformed
+
+    private void pokemon_defenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokemon_defenseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pokemon_defenseActionPerformed
+
+    private void pokemon_attackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokemon_attackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pokemon_attackActionPerformed
+
+    private void pokemon_lifeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokemon_lifeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pokemon_lifeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -77,5 +234,25 @@ public class Create_Pokemon extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField pokemon_attack;
+    private javax.swing.JTextField pokemon_defense;
+    private javax.swing.JTextPane pokemon_description;
+    private javax.swing.JTextField pokemon_element;
+    private javax.swing.JTextField pokemon_estatura;
+    private javax.swing.JTextField pokemon_genre;
+    private javax.swing.JTextField pokemon_level;
+    private javax.swing.JTextField pokemon_life;
+    private javax.swing.JLabel pokemon_name;
+    private javax.swing.JTextField pokemon_speed;
+    private javax.swing.JTextField pokemon_weight;
     // End of variables declaration//GEN-END:variables
 }
