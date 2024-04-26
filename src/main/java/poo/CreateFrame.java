@@ -86,11 +86,11 @@ public class CreateFrame extends javax.swing.JFrame {
     private void combate_pokemonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combate_pokemonesActionPerformed
         // TODO add your handling code here:
                 new Combate().setVisible(true);
-
     }//GEN-LAST:event_combate_pokemonesActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        new MisPokemones().setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
