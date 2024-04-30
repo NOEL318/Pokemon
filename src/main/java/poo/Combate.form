@@ -65,11 +65,6 @@
               </Group>
               <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="jTextField1" min="-2" pref="71" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -83,9 +78,7 @@
               </Group>
               <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
               <Component id="lifeCPU" min="-2" pref="15" max="-2" attributes="0"/>
-              <EmptySpace pref="72" max="32767" attributes="0"/>
-              <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace pref="112" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="nameUser" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="numUser" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -236,11 +229,6 @@
           <Font name="Bahnschrift" size="12" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="cpu "/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
     </Component>
   </SubComponents>

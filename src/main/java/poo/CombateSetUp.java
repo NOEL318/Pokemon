@@ -33,6 +33,7 @@ public class CombateSetUp extends javax.swing.JFrame {
         //agregamos 
         getContentPane().add(backgroundCombate,BorderLayout.CENTER);
         
+        
     }
 
     /**
@@ -103,6 +104,11 @@ public class CombateSetUp extends javax.swing.JFrame {
         buscarUserButton.setText("Buscar");
         buscarUserButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         buscarUserButton.setBorderPainted(false);
+        buscarUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarUserButtonActionPerformed(evt);
+            }
+        });
 
         PokemonUserIMG.setEditable(false);
         PokemonUserIMG.setAutoscrolls(false);
@@ -272,6 +278,12 @@ public class CombateSetUp extends javax.swing.JFrame {
         // TODO add your handling code here:
         new Combate("user","cpu").setVisible(true);
     }//GEN-LAST:event_CombateStartActionPerformed
+
+    private void buscarUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarUserButtonActionPerformed
+        // TODO add your handling code here:
+        buscarPokemonUser.getText();
+        
+    }//GEN-LAST:event_buscarUserButtonActionPerformed
 
     /**
      * @param args the command line arguments

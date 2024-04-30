@@ -12,9 +12,9 @@ import java.awt.*;
 public class Combate extends javax.swing.JFrame {
     private String user;
     private String cpu;
-    private int userNO;
+    private String[] userNO={"1"};
     private int vidaMaxUser;
-    private int cpuNO;
+    private String[] cpuNO={"12"};
     private int vidaMaxCPU;
     
     
@@ -22,41 +22,50 @@ public class Combate extends javax.swing.JFrame {
         this.user = user;
         this.cpu = cpu;
         
+        
         setTitle("Combate  "+user+" VS "+cpu);  
         
         
-        //fondo y propiedades 
-        ImageIcon background = new ImageIcon("C:/Users/isaco/Pokemon/src/main/java/poo/backgroundCombate/backgroundCombate.jpg"); 
-        JLabel backgroundCombate = new JLabel (background);
-        backgroundCombate.setSize(720,360);     //PROPIEDADES
-        backgroundCombate.setOpaque(false);  
-        
-        //lifeBase
-        ImageIcon life = new ImageIcon("C:/Users/isaco/Pokemon/src/main/java/poo/backgroundCombate/lifeBase.png"); 
-        JLabel lifeBase = new JLabel (life);
-        lifeBase.setSize(720,360);     
-        lifeBase.setOpaque(false);  //PROPIEDADES
-        
-
-        
-        //donde se agregan las cosas
+        //fotos pokemon
+        ImagePokemon(userNO, 80,110);
+        ImagePokemon(cpuNO, 490,20);
         initComponents();
-        add(lifeBase, BorderLayout.CENTER);
-        getContentPane().add(backgroundCombate,BorderLayout.CENTER);
-        barraVidas(user, userNO, vidaMaxUser, cpu, cpuNO, vidaMaxCPU);
+        add(LifeBase(), BorderLayout.CENTER);
+        getContentPane().add(Background(),BorderLayout.CENTER);
+        BarrasVidas(user, userNO, vidaMaxUser, cpu, cpuNO, vidaMaxCPU);
         setLocationRelativeTo(null);
+        
        //Batalla
        
-       
-
-           
+     
     }
       
-   
-       public void barraVidas (String user, int userNO, int vidaMaxUser, String cpu, int cpuNO, int vidaMaxCPU){
+       public void ImagePokemon (String[] selected_pokemon, int x, int y ){
+
+           if(selected_pokemon[0].length()== 1)
+        {
+           selected_pokemon[0]= "00"+selected_pokemon[0];
+        }
+        else if(selected_pokemon[0].length()== 2)
+        {
+           selected_pokemon[0]= "0"+selected_pokemon[0];
+        }
+           String num = selected_pokemon[0];
+           
+        ImageIcon Img = new ImageIcon("src/main/java/poo/assets/"+num+ ".png"); 
+        Image image = Img.getImage();
+        Image newimg = image.getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH);
+        Img = new ImageIcon(newimg);
+        JLabel IMG = new JLabel (Img);
+        IMG.setSize(150,150);     
+        IMG.setOpaque(false);
+        add(IMG);
+        IMG.setLocation(x, y);  
+        }
+       public void BarrasVidas (String user, String[] userNO, int vidaMaxUser, String cpu, String[] cpuNO, int vidaMaxCPU){
        //lifeUser 
        nameUser.setText(user);
-       numUser.setText("Lv"+userNO);
+       numUser.setText("Lv"+userNO[0]);
        lifeUser.setMaximum(vidaMaxUser);
        lifeUser.setMinimum(0);
        lifeUser.setValue(25);
@@ -64,13 +73,25 @@ public class Combate extends javax.swing.JFrame {
        
        //lifeCPU 
        nameCPU.setText(cpu);
-       numCPU.setText("Lv"+cpuNO);
+       numCPU.setText("Lv"+cpuNO[0]);
        lifeCPU.setMaximum(vidaMaxCPU);
        lifeCPU.setMinimum(0);
        lifeCPU.setValue(25);
        }    
-    
-    
+       public JLabel LifeBase (){
+        ImageIcon life = new ImageIcon("src/main/java/poo/backgroundCombate/lifeBase.png"); 
+        JLabel lifeBase = new JLabel (life);
+        lifeBase.setSize(720,360);     
+        lifeBase.setOpaque(false);  //PROPIEDADES
+        return lifeBase;
+       }
+       public JLabel Background (){
+        ImageIcon background = new ImageIcon("src/main/java/poo/backgroundCombate/backgroundCombate.jpg"); 
+        JLabel backgroundCombate = new JLabel (background);
+        backgroundCombate.setSize(720,360);     //PROPIEDADES
+        backgroundCombate.setOpaque(false);  
+        return backgroundCombate;
+       }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -93,7 +114,6 @@ public class Combate extends javax.swing.JFrame {
         nameUser = new javax.swing.JLabel();
         numUser = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -156,8 +176,6 @@ public class Combate extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Bahnschrift", 0, 12)); // NOI18N
         jLabel2.setText("cpu ");
 
-        jTextField1.setText("jTextField1");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -192,10 +210,6 @@ public class Combate extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(numUser))))))
                 .addContainerGap(20, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,9 +221,7 @@ public class Combate extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(3, 3, 3)
                 .addComponent(lifeCPU, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameUser)
                     .addComponent(numUser))
@@ -279,7 +291,6 @@ public class Combate extends javax.swing.JFrame {
     private javax.swing.JTextArea Combate;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JProgressBar lifeCPU;
     private javax.swing.JProgressBar lifeUser;
