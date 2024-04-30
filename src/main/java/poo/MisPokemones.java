@@ -4,17 +4,38 @@
  */
 package poo;
 
+//import javax.swing.DefaultListModel;
+import java.awt.Image;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /**
  *
  * @author emma2
  */
 public class MisPokemones extends javax.swing.JFrame {
 
+    String[] pokemon = {};
+
     /**
      * Creates new form MisPokemones
      */
     public MisPokemones() {
         initComponents();
+        ImageIcon Img = new ImageIcon("src/main/java/poo/"+"Busqueda"+ ".jpg"); 
+        Image image = Img.getImage();
+        Image newimg = image.getScaledInstance(850, 510, java.awt.Image.SCALE_SMOOTH);
+        Img = new ImageIcon(newimg);
+        JLabel IMG = new JLabel (Img);
+        IMG.setSize(700,450);
+        IMG.setOpaque(false);
+        add(IMG);
+        IMG.setLocation(1, 1); 
     }
 
     /**
@@ -27,74 +48,43 @@ public class MisPokemones extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        Name1 = new javax.swing.JTextField();
-        Name2 = new javax.swing.JTextField();
-        Name3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        Text1 = new javax.swing.JTextField();
-        Text2 = new javax.swing.JTextField();
-        Text3 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        Agregar = new javax.swing.JButton();
+        Texto = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        search_results = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(86, 138, 241));
 
         jLabel1.setFont(new java.awt.Font("Snap ITC", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Mis Pokemones");
 
-        Name1.setBackground(new java.awt.Color(0, 0, 102));
-        Name1.setFont(new java.awt.Font("Tempus Sans ITC", 0, 12)); // NOI18N
-        Name1.setForeground(new java.awt.Color(255, 255, 255));
-        Name1.setText("Name1");
-        Name1.addActionListener(new java.awt.event.ActionListener() {
+        Agregar.setBackground(new java.awt.Color(0, 51, 102));
+        Agregar.setFont(new java.awt.Font("Segoe Print", 0, 12)); // NOI18N
+        Agregar.setForeground(new java.awt.Color(255, 255, 255));
+        Agregar.setText("Mostrar");
+        Agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Name1ActionPerformed(evt);
+                AgregarActionPerformed(evt);
             }
         });
 
-        Name2.setBackground(new java.awt.Color(0, 0, 102));
-        Name2.setFont(new java.awt.Font("Tempus Sans ITC", 0, 12)); // NOI18N
-        Name2.setForeground(new java.awt.Color(255, 255, 255));
-        Name2.setText("Name2");
-
-        Name3.setBackground(new java.awt.Color(0, 0, 102));
-        Name3.setFont(new java.awt.Font("Tempus Sans ITC", 0, 12)); // NOI18N
-        Name3.setForeground(new java.awt.Color(255, 255, 255));
-        Name3.setText("Name3");
-        Name3.addActionListener(new java.awt.event.ActionListener() {
+        Texto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Name3ActionPerformed(evt);
+                TextoActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(0, 51, 102));
-        jButton1.setFont(new java.awt.Font("Segoe Print", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText(">");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        Text1.setBackground(new java.awt.Color(0, 51, 102));
-        Text1.setForeground(new java.awt.Color(255, 255, 255));
-
-        Text2.setBackground(new java.awt.Color(0, 51, 102));
-        Text2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Text2ActionPerformed(evt);
-            }
-        });
-
-        Text3.setBackground(new java.awt.Color(0, 51, 102));
-        Text3.setForeground(new java.awt.Color(255, 255, 255));
-
-        jButton2.setBackground(new java.awt.Color(0, 51, 102));
-        jButton2.setFont(new java.awt.Font("Segoe Print", 0, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("<");
+        search_results.setEditable(false);
+        search_results.setColumns(20);
+        search_results.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        search_results.setRows(5);
+        search_results.setAutoscrolls(false);
+        search_results.setEnabled(false);
+        search_results.setFocusable(false);
+        search_results.setRequestFocusEnabled(false);
+        jScrollPane1.setViewportView(search_results);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,71 +92,80 @@ public class MisPokemones extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 52, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Name1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Text1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Name2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Name3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(70, Short.MAX_VALUE))))
+                .addComponent(jLabel1)
+                .addGap(87, 495, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(272, 272, 272))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Texto, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Name1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Name2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Name3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Texto, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Agregar)
+                .addGap(114, 114, 114))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
 
-    private void Name3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Name3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Name3ActionPerformed
+        new Descripcion(pokemon).setVisible(true);
+    }//GEN-LAST:event_AgregarActionPerformed
+    //private DefaultListModel jList1Model;
 
-    private void Text2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Text2ActionPerformed
+    public void readFile() {
+        File file = new File("./pokemon_list.csv");
+        String filename = "";
+        try {
+            search_results.setText("");
 
-    private void Name1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Name1ActionPerformed
+            String nombre = Texto.getText();
+            FileReader file_reader = new FileReader(file);
+            BufferedReader buffered_reader = new BufferedReader(file_reader);
+            String linea = "";
+            String Text = search_results.getText();
+            int x=0;
+            while ((linea = buffered_reader.readLine()) != null) {
+
+                String[] pokemon = linea.split(",");
+                if (pokemon[1].contentEquals(nombre)) {
+                    System.out.println(pokemon[1]);
+                    Text = Text + linea + "\n";
+                    this.pokemon = pokemon;
+                    x=1;
+                }
+
+            }
+            if (x==1)
+            search_results.setText(Text);
+            else
+            search_results.setText("Ese pokemon no se encuentra");
+        } catch (FileNotFoundException ex) {
+
+        } catch (IOException ex) {
+
+        }
+    }
+    private void TextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Name1ActionPerformed
+        readFile();
+    }//GEN-LAST:event_TextoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,14 +203,10 @@ public class MisPokemones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Name1;
-    private javax.swing.JTextField Name2;
-    private javax.swing.JTextField Name3;
-    private javax.swing.JTextField Text1;
-    private javax.swing.JTextField Text2;
-    private javax.swing.JTextField Text3;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton Agregar;
+    private javax.swing.JTextField Texto;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea search_results;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,13 @@
  */
 package poo;
 
+import java.awt.Color;
+import java.awt.Image;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /**
  *
  * @author noel
@@ -15,6 +22,14 @@ public class CreateFrame extends javax.swing.JFrame {
      */
     public CreateFrame() {
         initComponents();
+        ImageIcon Img = new ImageIcon("src/main/java/poo/"+"Fondo"+ ".png"); 
+        Image image = Img.getImage();
+        Image newimg = image.getScaledInstance(850, 510, java.awt.Image.SCALE_SMOOTH);
+        Img = new ImageIcon(newimg);
+        JLabel IMG = new JLabel (Img);
+        IMG.setSize(700,450);     
+        add(IMG);
+        IMG.setLocation(1, 1); 
     }
 
     /**
@@ -28,31 +43,60 @@ public class CreateFrame extends javax.swing.JFrame {
 
         combate_pokemones = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        MisPokemones = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        combate_pokemones.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        combate_pokemones.setBackground(new java.awt.Color(229, 175, 184));
+        combate_pokemones.setFont(new java.awt.Font("Tempus Sans ITC", 1, 28)); // NOI18N
         combate_pokemones.setText("Combate");
+        combate_pokemones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                combate_pokemonesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                combate_pokemonesMouseExited(evt);
+            }
+        });
         combate_pokemones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combate_pokemonesActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        jButton2.setBackground(new java.awt.Color(102, 153, 255));
+        jButton2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 28)); // NOI18N
         jButton2.setText("Crear Pokemones");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton2MouseExited(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        jButton3.setText("Mis Pokemones");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        MisPokemones.setBackground(new java.awt.Color(87, 57, 57));
+        MisPokemones.setFont(new java.awt.Font("Tempus Sans ITC", 1, 28)); // NOI18N
+        MisPokemones.setForeground(new java.awt.Color(255, 255, 255));
+        MisPokemones.setText("Mis Pokemones");
+        MisPokemones.setToolTipText("");
+        MisPokemones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MisPokemonesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MisPokemonesMouseExited(evt);
+            }
+        });
+        MisPokemones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                MisPokemonesActionPerformed(evt);
             }
         });
 
@@ -65,7 +109,7 @@ public class CreateFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(combate_pokemones, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MisPokemones, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(208, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -74,7 +118,7 @@ public class CreateFrame extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                .addComponent(MisPokemones, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(combate_pokemones, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
                 .addGap(48, 48, 48))
@@ -88,15 +132,45 @@ public class CreateFrame extends javax.swing.JFrame {
                 new Combate().setVisible(true);
     }//GEN-LAST:event_combate_pokemonesActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void MisPokemonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MisPokemonesActionPerformed
         // TODO add your handling code here:
         new MisPokemones().setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_MisPokemonesActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         new Create_Pokemon().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
+        // TODO add your handling code here:
+        jButton2.setBackground(new Color(67,98,160));
+    }//GEN-LAST:event_jButton2MouseEntered
+
+    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
+        // TODO add your handling code here:
+        jButton2.setBackground(new Color(102,153,255));
+    }//GEN-LAST:event_jButton2MouseExited
+
+    private void MisPokemonesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MisPokemonesMouseEntered
+        // TODO add your handling code here:
+        MisPokemones.setBackground(new Color(59,39,39));
+    }//GEN-LAST:event_MisPokemonesMouseEntered
+
+    private void MisPokemonesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MisPokemonesMouseExited
+        // TODO add your handling code here:
+        MisPokemones.setBackground(new Color(87,57,57));
+    }//GEN-LAST:event_MisPokemonesMouseExited
+
+    private void combate_pokemonesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combate_pokemonesMouseEntered
+        // TODO add your handling code here:
+        combate_pokemones.setBackground(new Color(185,145,152));
+    }//GEN-LAST:event_combate_pokemonesMouseEntered
+
+    private void combate_pokemonesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combate_pokemonesMouseExited
+        // TODO add your handling code here:
+        combate_pokemones.setBackground(new Color(229,175,184));
+    }//GEN-LAST:event_combate_pokemonesMouseExited
 
     /**
      * @param args the command line arguments
@@ -134,8 +208,8 @@ public class CreateFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton MisPokemones;
     private javax.swing.JButton combate_pokemones;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     // End of variables declaration//GEN-END:variables
 }
