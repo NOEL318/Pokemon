@@ -52,17 +52,17 @@ System.out.print(e);
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        combate_pokemones = new javax.swing.JButton();
+        startCombate = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        combate_pokemones.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        combate_pokemones.setText("Combate");
-        combate_pokemones.addActionListener(new java.awt.event.ActionListener() {
+        startCombate.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        startCombate.setText("Combate");
+        startCombate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combate_pokemonesActionPerformed(evt);
+                startCombateActionPerformed(evt);
             }
         });
 
@@ -89,7 +89,7 @@ System.out.print(e);
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(208, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(combate_pokemones, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(startCombate, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(208, Short.MAX_VALUE))
@@ -102,17 +102,23 @@ System.out.print(e);
                 .addGap(18, 18, 18)
                 .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(combate_pokemones, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                .addComponent(startCombate, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
                 .addGap(48, 48, 48))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void combate_pokemonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combate_pokemonesActionPerformed
+    private void startCombateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startCombateActionPerformed
         // TODO add your handling code here:
-        new Combate().setVisible(true);
-    }//GEN-LAST:event_combate_pokemonesActionPerformed
+        int batalla=0;
+        //127 significa fuera del combate 
+            
+            new CombateSetUp().setVisible(true); //set up de batalla obtenermos datos para la batalla. 
+            
+        
+        
+    }//GEN-LAST:event_startCombateActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -160,8 +166,8 @@ System.out.print(e);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton combate_pokemones;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton startCombate;
     // End of variables declaration//GEN-END:variables
 }
