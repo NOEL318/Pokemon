@@ -6,6 +6,12 @@ package poo;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Image;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -14,7 +20,11 @@ import javax.swing.JLabel;
  * @author isaco
  */
 public class CombateSetUp extends javax.swing.JFrame {
+    String[] selected_pokemon = {};
+    File file = new File("./favorites.csv");
+    File list = new File("./pokemon_list.csv");
 
+    boolean enabled = false;
     /**
      * Creates new form CombateSetUp
      */
@@ -25,7 +35,7 @@ public class CombateSetUp extends javax.swing.JFrame {
         setLocation(100,100);
         
         //fondo y propiedades 
-        ImageIcon background = new ImageIcon("C:/Users/isaco/Pokemon/src/main/java/poo/backgroundCombate/backgroundSetCombate.jpg"); 
+        ImageIcon background = new ImageIcon("src/main/java/poo/backgroundCombate/backgroundSetCombate.jpg"); 
         JLabel backgroundCombate = new JLabel (background);
         backgroundCombate.setSize(420,570);     //PROPIEDADES
         backgroundCombate.setOpaque(false);  
@@ -53,9 +63,7 @@ public class CombateSetUp extends javax.swing.JFrame {
         PokemonUserRes = new javax.swing.JTextField();
         buscarPokemonUser = new javax.swing.JTextField();
         buscarUserButton = new javax.swing.JButton();
-        PokemonUserIMG = new javax.swing.JTextField();
         buscarCpuButton = new javax.swing.JButton();
-        PokemonCpuIMG1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         PokemonCpuRes = new javax.swing.JTextField();
         buscarPokemonCpu = new javax.swing.JTextField();
@@ -63,6 +71,8 @@ public class CombateSetUp extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        PokemonUserIMG = new javax.swing.JLabel();
+        PokemonCpuIMG1 = new javax.swing.JLabel();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -110,22 +120,17 @@ public class CombateSetUp extends javax.swing.JFrame {
             }
         });
 
-        PokemonUserIMG.setEditable(false);
-        PokemonUserIMG.setAutoscrolls(false);
-        PokemonUserIMG.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        PokemonUserIMG.setPreferredSize(new java.awt.Dimension(230, 85));
-
         buscarCpuButton.setBackground(new java.awt.Color(104, 140, 242));
         buscarCpuButton.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
         buscarCpuButton.setForeground(new java.awt.Color(255, 255, 255));
         buscarCpuButton.setText("Buscar");
         buscarCpuButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         buscarCpuButton.setBorderPainted(false);
-
-        PokemonCpuIMG1.setEditable(false);
-        PokemonCpuIMG1.setAutoscrolls(false);
-        PokemonCpuIMG1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        PokemonCpuIMG1.setPreferredSize(new java.awt.Dimension(230, 85));
+        buscarCpuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarCpuButtonActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -180,14 +185,17 @@ public class CombateSetUp extends javax.swing.JFrame {
                         .addGap(135, 135, 135)
                         .addComponent(CombateStart, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
+                                .addGap(6, 6, 6)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(PokemonUserIMG, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(PokemonCpuIMG1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(PokemonUserIMG, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(PokemonCpuIMG1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(26, 26, 26)
@@ -208,16 +216,13 @@ public class CombateSetUp extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
-                                .addComponent(PokemonCpuRes, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(PokemonUserRes, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6)
-                                .addGap(80, 80, 80))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(PokemonCpuRes, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(PokemonUserRes, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel6)
+                                        .addGap(80, 80, 80)))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -228,6 +233,10 @@ public class CombateSetUp extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(jLabel2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6)
+                        .addGap(2, 2, 2))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -236,27 +245,25 @@ public class CombateSetUp extends javax.swing.JFrame {
                                 .addGap(0, 0, 0)
                                 .addComponent(buscarPokemonUser, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buscarUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(PokemonUserIMG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, 0)
-                        .addComponent(PokemonUserRes, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
-                        .addGap(2, 2, 2)))
+                                .addComponent(buscarUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addComponent(PokemonUserRes, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(PokemonUserIMG, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(15, 15, 15)))
                 .addComponent(jLabel3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
                         .addComponent(jLabel5)
                         .addGap(0, 0, 0)
                         .addComponent(buscarPokemonCpu, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buscarCpuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(PokemonCpuIMG1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
+                        .addComponent(PokemonCpuIMG1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(PokemonCpuRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(25, 25, 25)
                 .addComponent(CombateStart, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -281,10 +288,109 @@ public class CombateSetUp extends javax.swing.JFrame {
 
     private void buscarUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarUserButtonActionPerformed
         // TODO add your handling code here:
-        buscarPokemonUser.getText();
-        
+        String search =buscarPokemonUser.getText();
+        readFile(search);
+ 
     }//GEN-LAST:event_buscarUserButtonActionPerformed
 
+    private void buscarCpuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarCpuButtonActionPerformed
+        // TODO add your handling code here:
+             String search =buscarPokemonCpu.getText();
+        readFileComplete(search);
+    }//GEN-LAST:event_buscarCpuButtonActionPerformed
+
+        public void readFile(String search) {
+        try {
+            FileReader file_reader = new FileReader(file);
+            BufferedReader buffered_reader = new BufferedReader(file_reader);
+            String linea = "";
+            String Text = "";
+            while ((linea = buffered_reader.readLine()) != null) {
+                String[] pokemon = linea.split(",");
+                if (pokemon[1].contentEquals(search)) {
+                    Text = Text + pokemon[1] + "\n";
+                    selected_pokemon=pokemon;
+                }
+            }
+             if(Text.equals("")){
+                 enabled=false;
+                    CombateStart.setEnabled(enabled);
+                    CombateStart.setText("Pokemon No Encontrado:");
+             }else{
+                 CombateStart.setText("Pokemon Encontrado:");
+                 enabled=true;
+                 CombateStart.setEnabled(enabled);
+             }
+             //images
+           String imagepath = "src/main/java/poo/assets/";
+        if (selected_pokemon[0].length() == 1) {
+            imagepath = imagepath + "00" + selected_pokemon[0] + ".png";
+        } else if (selected_pokemon[0].length() == 2) {
+            imagepath = imagepath + "0" + selected_pokemon[0] + ".png";
+        } else if (selected_pokemon[0].length() == 3) {
+            imagepath = imagepath + selected_pokemon[0] + ".png";
+        }
+
+        ImageIcon pic = new ImageIcon(imagepath);
+        Image image = pic.getImage();
+        Image newimg = image.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+        pic = new ImageIcon(newimg);
+        PokemonUserIMG.setIcon(pic);
+        PokemonUserIMG.setOpaque(false);
+             
+        } catch (FileNotFoundException ex) {
+
+        } catch (IOException ex) {
+
+        }
+    }
+        
+        
+                public void readFileComplete(String search) {
+        try {
+            FileReader file_reader = new FileReader(list);
+            BufferedReader buffered_reader = new BufferedReader(file_reader);
+            String linea = "";
+            String Text = "";
+            while ((linea = buffered_reader.readLine()) != null) {
+                String[] pokemon = linea.split(",");
+                if (pokemon[1].contentEquals(search)) {
+                    Text = Text + pokemon[1] + "\n";
+                    selected_pokemon=pokemon;
+                }
+            }
+             if(Text.equals("")){
+                 enabled=false;
+                    CombateStart.setEnabled(enabled);
+                    CombateStart.setText("Pokemon No Encontrado:");
+             }else{
+                 CombateStart.setText("Pokemon Encontrado:");
+                 enabled=true;
+                 CombateStart.setEnabled(enabled);
+             }
+             //images
+           String imagepath = "src/main/java/poo/assets/";
+        if (selected_pokemon[0].length() == 1) {
+            imagepath = imagepath + "00" + selected_pokemon[0] + ".png";
+        } else if (selected_pokemon[0].length() == 2) {
+            imagepath = imagepath + "0" + selected_pokemon[0] + ".png";
+        } else if (selected_pokemon[0].length() == 3) {
+            imagepath = imagepath + selected_pokemon[0] + ".png";
+        }
+
+        ImageIcon pic = new ImageIcon(imagepath);
+        Image image = pic.getImage();
+        Image newimg = image.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+        pic = new ImageIcon(newimg);
+        PokemonCpuIMG1.setIcon(pic);
+        PokemonCpuIMG1.setOpaque(false);
+             
+        } catch (FileNotFoundException ex) {
+
+        } catch (IOException ex) {
+
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -322,9 +428,9 @@ public class CombateSetUp extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CombateStart;
-    private javax.swing.JTextField PokemonCpuIMG1;
+    private javax.swing.JLabel PokemonCpuIMG1;
     private javax.swing.JTextField PokemonCpuRes;
-    private javax.swing.JTextField PokemonUserIMG;
+    private javax.swing.JLabel PokemonUserIMG;
     private javax.swing.JTextField PokemonUserRes;
     private javax.swing.JButton buscarCpuButton;
     private javax.swing.JTextField buscarPokemonCpu;

@@ -43,6 +43,15 @@ public class Create_Pokemon extends javax.swing.JFrame {
         selected_pokemon = pokemon;
         initComponents();
         setValues();
+        ImageIcon Img = new ImageIcon("src/main/java/poo/backgroundCombate/backgroundSetCombate.jpg"); 
+        Image image = Img.getImage();
+        Image newimg = image.getScaledInstance(377, 570, java.awt.Image.SCALE_SMOOTH);
+        Img = new ImageIcon(newimg);
+        JLabel IMG = new JLabel (Img);
+        IMG.setSize(377,570);     
+        IMG.setOpaque(false);
+        add(IMG);
+        IMG.setLocation(1, 1);
     }
 
     public void setValues() {
@@ -110,16 +119,28 @@ public class Create_Pokemon extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Peso");
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Estatura");
 
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Elemento");
 
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Género");
 
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Habilidades");
 
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Nivel");
 
         pokemon_weight.setText("Peso");
@@ -166,6 +187,7 @@ public class Create_Pokemon extends javax.swing.JFrame {
             }
         });
 
+        pokemon_id.setForeground(new java.awt.Color(255, 255, 255));
         pokemon_id.setText("#ID");
 
         create_button.setText("Crear");

@@ -5,6 +5,7 @@
 package poo;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,6 +13,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -29,6 +32,15 @@ public class Create extends javax.swing.JFrame {
      */
     public Create() {
         initComponents();
+         ImageIcon Img = new ImageIcon("src/main/java/poo/"+"Busqueda"+ ".jpg"); 
+        Image image = Img.getImage();
+        Image newimg = image.getScaledInstance(850, 510, java.awt.Image.SCALE_SMOOTH);
+        Img = new ImageIcon(newimg);
+        JLabel IMG = new JLabel (Img);
+        IMG.setSize(700,450);
+        IMG.setOpaque(false);
+        add(IMG);
+        IMG.setLocation(1, 1); 
     }
 
     /**

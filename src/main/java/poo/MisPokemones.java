@@ -130,7 +130,7 @@ public class MisPokemones extends javax.swing.JFrame {
     //private DefaultListModel jList1Model;
 
     public void readFile() {
-        File file = new File("./pokemon_list.csv");
+        File file = new File("./favorites.csv");
         String filename = "";
         try {
             search_results.setText("");
